@@ -29,7 +29,7 @@
 
 ```bash
 # 方式一：克隆到 Claude Code 的 skills 目录
-git clone https://github.com/barliwendy/life-council-skill.git ~/.claude/skills/life-council
+git clone https://github.com/WendyYu2016/life-council-skill.git ~/.claude/skills/life-council
 
 # 方式二：手动把 SKILL.md + references/ 放进 ~/.claude/skills/life-council/
 ```
