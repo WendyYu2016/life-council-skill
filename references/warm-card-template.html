@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITLE__ · 人生顾问委员会</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* === PALETTE：替换为 warm-card.md 中选定的一套调色板（按文案情绪选） === */
+  :root{
+    --bg1:#FFF7EF; --bg2:#FDEEE2; --bg3:#F7E2D4;
+    --ink:#3B2E27; --ink-soft:#7C6A5D; --ink-dim:#A8978B;
+    --accent:#C9743D; --accent-soft:#E5A876;
+    --act:#7C8A66; --act-bg:#EDEFE2; --rule:#EAD9C9; --glow:#FFE9C8;
+    --serif:'LXGW WenKai','Noto Serif SC',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--bg2);}
+  body{
+    min-height:100vh;min-height:100dvh;
+    display:flex;align-items:center;justify-content:center;
+    padding:clamp(20px,4vw,60px);font-family:var(--serif);
+    background:
+      radial-gradient(120% 80% at 50% -10%, var(--glow) 0%, rgba(255,233,200,0) 55%),
+      linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+  }
+  .card{
+    position:relative;width:min(720px,100%);
+    background:linear-gradient(170deg,#FFFDFB 0%,#FFF9F3 100%);
+    border-radius:28px;
+    padding:clamp(40px,6vw,72px) clamp(32px,5vw,64px) clamp(36px,5vw,56px);
+    box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 30px 70px -28px rgba(150,90,40,.32),0 8px 24px -16px rgba(150,90,40,.2);
+    overflow:hidden;
+  }
+  .card::before{content:'';position:absolute;top:-140px;left:50%;transform:translateX(-50%);
+    width:520px;height:300px;
+    background:radial-gradient(closest-side, var(--glow), rgba(255,200,130,0));pointer-events:none;}
+  .eyebrow{position:relative;font-size:clamp(14px,2.4vw,17px);letter-spacing:.35em;color:var(--accent);
+    font-weight:500;text-align:center;margin-bottom:clamp(18px,3vw,26px);opacity:0;animation:rise .9s ease .1s forwards;}
+  .eyebrow span{display:inline-block;padding:0 14px;}
+  .eyebrow::before,.eyebrow::after{content:'';display:inline-block;width:28px;height:1px;background:var(--accent-soft);vertical-align:middle;}
+  h1{position:relative;text-align:center;font-size:clamp(46px,9vw,76px);font-weight:700;color:var(--ink);
+    letter-spacing:.02em;line-height:1.1;margin-bottom:clamp(8px,1.5vw,14px);opacity:0;animation:rise 1s ease .22s forwards;}
+  .sun{display:block;width:54px;height:3px;margin:clamp(20px,3vw,28px) auto clamp(28px,4vw,40px);
+    background:linear-gradient(90deg,var(--accent-soft),var(--accent));border-radius:3px;opacity:0;animation:grow .9s ease .5s forwards;}
+  .body{position:relative;}
+  .body p{font-size:clamp(19px,3.3vw,23px);line-height:1.95;color:var(--ink);margin-bottom:clamp(18px,2.6vw,24px);opacity:0;animation:rise .9s ease forwards;}
+  .body p .em{color:var(--accent);font-weight:500;}
+  .highlight{font-size:clamp(22px,4vw,28px)!important;line-height:1.6!important;color:var(--ink)!important;font-weight:500;
+    padding:clamp(14px,2.4vw,18px) 0 clamp(14px,2.4vw,18px) clamp(20px,3vw,28px);border-left:3px solid var(--accent);margin:clamp(26px,4vw,34px) 0!important;}
+  .body h2{font-size:clamp(24px,4.2vw,30px);font-weight:700;color:var(--ink);margin:clamp(34px,5vw,46px) 0 clamp(16px,2.4vw,22px);letter-spacing:.02em;opacity:0;animation:rise .9s ease forwards;}
+  .body h2::before{content:'';display:inline-block;width:14px;height:14px;margin-right:12px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,var(--accent-soft),var(--accent));vertical-align:middle;}
+  .prompt{font-size:clamp(20px,3.6vw,25px)!important;line-height:1.7!important;color:#384228!important;font-weight:500;
+    background:var(--act-bg);padding:clamp(22px,3.4vw,28px) clamp(24px,3.6vw,32px);border-left:4px solid var(--act);border-radius:0 14px 14px 0;margin:clamp(22px,3.4vw,28px) 0!important;}
+  .closing{text-align:center;font-size:clamp(24px,4.4vw,32px)!important;line-height:1.7!important;font-weight:700;color:var(--ink)!important;margin:clamp(36px,5vw,48px) 0 0!important;}
+  .closing .glow{background:linear-gradient(120deg,var(--accent) 0%,var(--accent-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .footer{position:relative;margin-top:clamp(38px,5vw,52px);padding-top:clamp(20px,3vw,26px);border-top:1px solid var(--rule);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;opacity:0;animation:rise 1s ease 1.1s forwards;}
+  .footer .who{font-size:clamp(15px,2.6vw,18px);color:var(--ink-soft);font-weight:500;}
+  .footer .mentors{font-size:clamp(13px,2.3vw,16px);color:var(--ink-dim);letter-spacing:.04em;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes grow{from{opacity:0;transform:scaleX(0);}to{opacity:1;transform:scaleX(1);}}
+  .body p:nth-of-type(1){animation-delay:.6s;} .body p:nth-of-type(2){animation-delay:.7s;}
+  .body p:nth-of-type(3){animation-delay:.8s;} .body h2{animation-delay:.85s;}
+  .body p:nth-of-type(4){animation-delay:.92s;} .prompt{animation-delay:1s;}
+  .body p:nth-of-type(5){animation-delay:1.08s;} .closing{animation-delay:1.2s;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important;transform:none!important;}}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow"><span>__EYEBROW__</span></div>
+    <h1>__TITLE__</h1>
+    <span class="sun"></span>
+    <div class="body">
+      __BODY__
+    </div>
+    <div class="footer">
+      <span class="who">人生顾问委员会</span>
+      <span class="mentors">__MENTORS__</span>
+    </div>
+  </div>
+</body>
+</html>
